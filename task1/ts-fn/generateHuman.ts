@@ -39,6 +39,8 @@ function humanConstructor(data: DataType) {
   console.log(
     new Person(name, surname, gender, age, phoneNumber, email, country, id)
   );
+
+  return true
 }
 
 export async function getUser() {

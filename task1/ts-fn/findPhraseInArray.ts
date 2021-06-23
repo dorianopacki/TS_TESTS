@@ -4,7 +4,7 @@ export const findPhraseInArray = (
   array: string[],
   phrase: string
 ): Array<[number, string]> => {
-  if (array.length < 1) alert("Given array seems to be empty");
+  if (array.length < 1) throw Error ("Given array seems to be empty");
 
   const copy = [...array];
 
