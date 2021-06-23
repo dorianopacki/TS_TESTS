@@ -1,7 +1,7 @@
 type avaiblePhase = string | number;
 
 export function filterWith<T>(arrOfSomething: T[], phrase: avaiblePhase): T[] {
-  if (phrase.toString().length < 2) {
+  if (phrase.toString().length <= 1) {
     return [];
   }
 

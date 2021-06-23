@@ -1,4 +1,4 @@
-export class Person implements IPerson {
+export class Person {
   name: string;
   surname: string;
   gender: string;
