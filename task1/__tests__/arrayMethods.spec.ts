@@ -86,7 +86,12 @@ describe("entriesFn", () => {
 
     it("returns a key/value pair of array elements postion", () => {
         const result = entriesFn(MOCK_ARRAY)
-        
+        expect(result.next()).toStrictEqual({value: "a", done: false })
+    })
+
+    it("should inform if array is empty", () => {
+        const result = entriesFn([])
+        // expect(result).toBe("array is empty")
     })
 })
 
