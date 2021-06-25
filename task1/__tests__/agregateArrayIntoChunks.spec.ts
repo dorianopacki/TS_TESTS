@@ -22,6 +22,5 @@ describe("aggregateArrayIntoChunks", () => {
 
     it("does work as intended", () => {
         const a = aggregateArrayIntoChunks(alphabet)
-        console.log(a)
     })
 })
