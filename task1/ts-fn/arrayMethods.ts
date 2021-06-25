@@ -66,7 +66,7 @@ type callbackReduceFn = <T, U>(
 export const reduceFn = <T, U>(
   array: T[],
   callback: callbackReduceFn,
-  initial: U
+  initial?: U
 ) => {
   let accumulator = initial ? initial : array[0];
   for (let i = 0; i < array.length; i++) {

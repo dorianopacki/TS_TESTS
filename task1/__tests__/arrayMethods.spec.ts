@@ -1,6 +1,4 @@
-import { MOCK_DATA } from './../__MOCKS__/mockForTest';
 import { forEachFn, mapFn, someFn, everyFn, filterFn, reduceFn, entriesFn } from './../ts-fn/arrayMethods';
-import { RSA_NO_PADDING } from 'node:constants';
 
 describe("ForEachFn", () => {
     const MOCK_ARRAY = [1,2,3,4,5]
@@ -89,5 +87,27 @@ describe("entriesFn", () => {
     it("returns a key/value pair of array elements postion", () => {
         const result = entriesFn(MOCK_ARRAY)
         
+    })
+})
+
+describe("reduceFn", () => {
+    const MOCK_ARRAY = ["a", "a", "c"]
+    const MOCK_ARRAY_NUM = [1,2,3,4]
+    it("accumulates data from array into object", () => {
+        const result = reduceFn(MOCK_ARRAY, (prev: any, curr: any) => {
+            prev[curr] ? prev[curr] ++ : prev[curr] = 1
+            return prev
+        }, {})
+
+        expect(result).toStrictEqual({"a": 2, "c": 1})
+    })
+
+    it("accumulates data from array without provided initial value into default array", () => {
+        const result = reduceFn(MOCK_ARRAY, (prev: any, acc:any) => {
+            prev+=acc
+            return prev
+        })
+        
+        expect(result).toBe('aaac')
     })
 })
