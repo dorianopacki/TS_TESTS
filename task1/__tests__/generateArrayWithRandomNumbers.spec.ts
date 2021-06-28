@@ -12,9 +12,26 @@ describe("generateArrayWithRandomNumbers", () => {
         }
     })
 
-    it("min valie should be bigger than maximum", () => {
+    it("min value should be bigger than maximum", () => {
+        const wrongValuesOne = {first: 1, second: 2, third: 1}
+        const wrongValuesTwo = {first: 2, second: 3, third: 1}
+        const wrongValuesThree = {first: 3, second: 5, third: 3}
         try {
-            generateArrayWithRandomNumbers(1,2,1)
+            generateArrayWithRandomNumbers(wrongValuesOne.first,wrongValuesOne.second,wrongValuesOne.third)
+        }
+        catch(error) {
+            expect(error.message).toBe("Minimum value can't be bigger than maximum")
+        }
+
+        try {
+            generateArrayWithRandomNumbers(wrongValuesTwo.first,wrongValuesTwo.second,wrongValuesTwo.third)
+        }
+        catch(error) {
+            expect(error.message).toBe("Minimum value can't be bigger than maximum")
+        }
+
+        try {
+            generateArrayWithRandomNumbers(wrongValuesThree.first,wrongValuesThree.second,wrongValuesThree.third)
         }
         catch(error) {
             expect(error.message).toBe("Minimum value can't be bigger than maximum")
@@ -22,8 +39,27 @@ describe("generateArrayWithRandomNumbers", () => {
     })
 
     it("min and max value should be from 1-10 range", () => {
+        const wrongValuesOne = {first: 1, second: 12, third: 13}
+        const wrongValuesTwo = {first: 1, second: 20, third: 33}
+        const wrongValuesThree = {first: 1, second: 12, third: 13}
+
         try {
-            generateArrayWithRandomNumbers(1,12,13)
+            generateArrayWithRandomNumbers(wrongValuesOne.first, wrongValuesOne.second,wrongValuesOne.third)
+        }
+        catch(error) {
+            expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")
+        }
+
+        try {
+            generateArrayWithRandomNumbers(wrongValuesTwo.first,wrongValuesTwo.second,wrongValuesTwo.third)
+        }
+        catch(error) {
+            expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")
+        }
+
+
+        try {
+            generateArrayWithRandomNumbers(wrongValuesThree.first,wrongValuesThree.second,wrongValuesThree.third)
         }
         catch(error) {
             expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")
@@ -31,9 +67,16 @@ describe("generateArrayWithRandomNumbers", () => {
     })
 
     it("should return array of given length",() => {
-        const numOfArrays = 5
-        expect(generateArrayWithRandomNumbers(numOfArrays, 1, 10)).toHaveLength(numOfArrays)
+        const numOfArraysOne = 5
+        expect(generateArrayWithRandomNumbers(numOfArraysOne, 1, 10)).toHaveLength(numOfArraysOne)
+
+        const numOfArraysTwo = 6
+        expect(generateArrayWithRandomNumbers(numOfArraysTwo, 1, 10)).toHaveLength(numOfArraysTwo)
+
+        const numOfArraysThree = 2
+        expect(generateArrayWithRandomNumbers(numOfArraysThree, 5, 10)).toHaveLength(numOfArraysThree)
     })
+
 })
 
 describe("generateArrayOfArrays", () => {
@@ -47,8 +90,26 @@ describe("generateArrayOfArrays", () => {
     })
 
     it("should throw error when min value is biggert than max", () => {
+        const wrongValuesOne = {first: 1, second: 1, third: 112, fourth: 13}
+        const wrongValuesTwo = {first: 1, second: 20, third: 33, fourth: }
+        const wrongValuesThree = {first: 1, second: 12, third: 13}
+
         try{
             generateArrayOfArrays(1,1,3,2)
+        }
+        catch(error) {
+            expect(error.message).toBe("Minimum value can't be bigger than maximum")
+        }
+
+        try{
+            generateArrayOfArrays(1,1,9,2)
+        }
+        catch(error) {
+            expect(error.message).toBe("Minimum value can't be bigger than maximum")
+        }
+
+        try{
+            generateArrayOfArrays(1,1,4,1)
         }
         catch(error) {
             expect(error.message).toBe("Minimum value can't be bigger than maximum")
@@ -56,8 +117,25 @@ describe("generateArrayOfArrays", () => {
     })
     
     it("both mix and max values have to be from range 1-10", () => {
+        const wrongValuesOne = {first: 1, second: 1, third: 12, fourth: 13}
+        const wrongValuesTwo = {first: 1, second: 1, third: 20, fourth: 33}
+        const wrongValuesThird = {first: 1, second: 1, third: 50, fourth: 99}
         try {
-            generateArrayOfArrays(1,1,12,13)
+            generateArrayOfArrays(wrongValuesOne.first,wrongValuesOne.second,wrongValuesOne.third,wrongValuesOne.fourth)
+        }
+        catch(error) {
+            expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")
+        }
+
+        try {
+            generateArrayOfArrays(wrongValuesTwo.first,wrongValuesTwo.second, wrongValuesTwo.third, wrongValuesTwo.fourth)
+        }
+        catch(error) {
+            expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")
+        }
+
+        try {
+            generateArrayOfArrays(wrongValuesThird.first, wrongValuesThird.second,wrongValuesThird.third,wrongValuesThird.fourth)
         }
         catch(error) {
             expect(error.message).toBe("The minimum and maximum value must be from range 1 - 10")

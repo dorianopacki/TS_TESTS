@@ -26,20 +26,32 @@ describe("function validates provided arguments", () => {
 
 describe("function works correctly", () => {
     it("defines that it is possible to build triangle", () => {
-        expect(isRectangularTriangle(7,24,25)).toBe("It is possible to build rectangular triangle with those sides")
-        expect(isRectangularTriangle(3,4,5)).toBe("It is possible to build rectangular triangle with those sides")
-        expect(isRectangularTriangle(12,16,20)).toBe("It is possible to build rectangular triangle with those sides")
+        const validNumsOne = {first: 7, second: 24, third: 25}
+        const validNumsSecond = {first: 3, second: 4, third: 5}
+        const validNumsThird = {first: 12, second: 16, third: 20}
+
+        expect(isRectangularTriangle(validNumsOne.first, validNumsOne.second, validNumsOne.third)).toBe("It is possible to build rectangular triangle with those sides")
+        expect(isRectangularTriangle(validNumsSecond.first, validNumsSecond.second, validNumsSecond.third)).toBe("It is possible to build rectangular triangle with those sides")
+        expect(isRectangularTriangle(validNumsThird.first,validNumsThird.second,validNumsThird.third)).toBe("It is possible to build rectangular triangle with those sides")
     })
 
     it("defined that it is not possible to build triangle", () => {
-        expect(isRectangularTriangle(1,3,3)).toBe("It is not possible to build rectangular triangle with those sides")
-        expect(isRectangularTriangle(2,6,6)).toBe("It is not possible to build rectangular triangle with those sides")
-        expect(isRectangularTriangle(10,10,6)).toBe("It is not possible to build rectangular triangle with those sides")
+        const wrongNumsOne = {first: 1, second: 3, third: 3}
+        const wrongNumsTwo = {first: 2, second: 6, third: 6}
+        const wrongNumsThird = {first: 10, second: 10, third: 6}
+
+        expect(isRectangularTriangle(wrongNumsOne.first, wrongNumsOne.second, wrongNumsOne.third)).toBe("It is not possible to build rectangular triangle with those sides")
+        expect(isRectangularTriangle(wrongNumsTwo.first, wrongNumsTwo.second, wrongNumsTwo.third)).toBe("It is not possible to build rectangular triangle with those sides")
+        expect(isRectangularTriangle(wrongNumsThird.first, wrongNumsThird.second, wrongNumsThird.third)).toBe("It is not possible to build rectangular triangle with those sides")
     })
 
     it("defines if it's not possible to build triangle with wrong sides", () => {
-        expect(isRectangularTriangle(1,2,3)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
-        expect(isRectangularTriangle(6,8,22)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
-        expect(isRectangularTriangle(4,6,12)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
+        const wrongNumsOne = {first:1, second: 2, third: 3}
+        const wrongNumsTwo = {first:6, second: 8, third: 22}
+        const wrongNumsThird = {first:4, second: 6, third: 12}
+
+        expect(isRectangularTriangle(wrongNumsOne.first, wrongNumsOne.second, wrongNumsOne.third)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
+        expect(isRectangularTriangle(wrongNumsTwo.first, wrongNumsTwo.second, wrongNumsTwo.third)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
+        expect(isRectangularTriangle(wrongNumsThird.first, wrongNumsThird.second, wrongNumsThird.third)).toBe("The biggest side has to be smaller than sum of two others to create a triangle")
     })
 })
