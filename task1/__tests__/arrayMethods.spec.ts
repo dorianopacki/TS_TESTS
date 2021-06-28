@@ -92,6 +92,7 @@ describe("entriesFn", () => {
     it("should inform if array is empty", () => {
         const result = entriesFn([])
         // expect(result).toBe("array is empty")
+        
     })
 })
 

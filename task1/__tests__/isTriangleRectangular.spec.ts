@@ -14,7 +14,9 @@ describe("function validates provided arguments", () => {
     })
 
     it("return message when number is not valid", () => {
-        expect(isRectangularTriangle(2.4, 3.2, 3.999)).toBe("Arguments are not valid")
+        const {decimalFirst, decimalSecond, decimalThird} = {decimalFirst: 2.4, decimalSecond: 3.2, decimalThird: 3.999}
+
+        expect(isRectangularTriangle(decimalFirst, decimalSecond, decimalThird)).toBe("Arguments are not valid")
         expect(isRectangularTriangle(NaN, NaN, NaN)).toBe("Arguments are not valid")
         expect(isRectangularTriangle(Infinity, Infinity, Infinity)).toBe("Arguments are not valid")
         expect(isRectangularTriangle(-1,2,3)).toBe("Side length has to be a natural number")
