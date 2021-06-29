@@ -90,9 +90,9 @@ describe("generateArrayOfArrays", () => {
     })
 
     it("should throw error when min value is biggert than max", () => {
-        const wrongValuesOne = {first: 1, second: 1, third: 112, fourth: 13}
-        const wrongValuesTwo = {first: 1, second: 20, third: 33, fourth: }
-        const wrongValuesThree = {first: 1, second: 12, third: 13}
+        const wrongValuesOne = {first: 1, second: 1, third: 3, fourth: 2}
+        const wrongValuesTwo = {first: 1, second: 1, third: 9, fourth: 2}
+        const wrongValuesThree = {first: 1, second: 4, third: 1}
 
         try{
             generateArrayOfArrays(1,1,3,2)

@@ -1,23 +1,23 @@
 import { forEachFn, mapFn, someFn, everyFn, filterFn, reduceFn, entriesFn } from './../ts-fn/arrayMethods';
 
-describe("ForEachFn", () => {
-    const MOCK_ARRAY = [1,2,3,4,5]
-
-    const multiply = (number: number) => number * 2
-    
-    // it("is a pure function", () => {
-    //     expect(forEachFn(MOCK_ARRAY, (number) => number * 2)).toHaveBeenCalledTimes(5)
-    // })
-    //todo
-})
-
 describe("MapFn", () => {
     const MOCK_ARRAY_NUM = [1,2,3,4]
+    const MOCK_ARRAY_NUM2 = [10, 8, 4]
+
+    const EXPECTED_OUTPUT_ONE = [2,4,6,8]
+    const EXPECTED_OUTPUT_TWO = [1,2,3,4]
+    const EXPECTED_OUTPUT_THREE = [5,4,2]
 
     const multiply = (number: number) => number * 2
     it("does return new array with proper data", () => {
         const result = mapFn(MOCK_ARRAY_NUM, multiply)
-        expect(result).toStrictEqual([2,4,6,8])
+        expect(result).toStrictEqual(EXPECTED_OUTPUT_ONE)
+
+        const result2 = mapFn(MOCK_ARRAY_NUM, (elem) => elem / 1)
+        expect(result2).toStrictEqual(EXPECTED_OUTPUT_TWO)
+
+        const result3 = mapFn(MOCK_ARRAY_NUM2, (elem) => elem /2)
+        expect(result3).toStrictEqual(EXPECTED_OUTPUT_THREE)
     })
 
 })
@@ -25,14 +25,27 @@ describe("MapFn", () => {
 describe("someFn", () => {
 
     const MOCK_ARRAY_NUM = [1,2,3,4]
+
     it("returns true when at least on condition is met", () => {
-        const result = someFn(MOCK_ARRAY_NUM, (num) => num === 2 ? true : false )
+        const result = someFn(MOCK_ARRAY_NUM, (num) => num === 2)
         expect(result).toBe(true)
+
+        const result2 = someFn(MOCK_ARRAY_NUM, (elem) => elem > 3)
+        expect(result2).toBe(true)
+
+        const result3 = someFn(MOCK_ARRAY_NUM, (elem) => elem === 1)
+        expect(result3).toBe(true)
     })
 
     it("should return false when no condtion is met", () => {
-        const result = someFn(MOCK_ARRAY_NUM, (num)=> num === 10 ? true: false)
+        const result = someFn(MOCK_ARRAY_NUM, (num)=> num === 10)
         expect(result).toBe(false)
+
+        const result2 = someFn(MOCK_ARRAY_NUM, (elem) => typeof elem === "string")
+        expect(result2).toBe(false)
+
+        const result3 = someFn(MOCK_ARRAY_NUM, (elem) => elem < 1)
+        expect(result3).toBe(false)
     })
 })
 
@@ -42,28 +55,54 @@ describe("everyFn", () => {
     it("should return true when every condition is met", () => {
         const result = everyFn(MOCK_ARRAY_NUM, (num) => typeof num === "number")
         expect(result).toBe(true)
+
+        const result2 = everyFn(MOCK_ARRAY_NUM, (elem) => typeof elem === "number" && elem >= 1)
+        expect(result2).toBe(true)
+        
+        const result3 = everyFn(MOCK_ARRAY_NUM, (elem) => typeof elem !== "string")
+        expect(result3).toBe(true)
     })
 
     it("should return false when not every condition is met", () => {
         const result = everyFn(MOCK_ARRAY_MIXED, (num) => typeof num === "number")
         expect(result).toBe(false)
+
+        const result2 = everyFn(MOCK_ARRAY_MIXED, (elem) => typeof elem === "string")
+        expect(result2).toBe(false)
+
+        const result3 = everyFn(MOCK_ARRAY_NUM, (elem) => typeof elem === "number" && elem > 2 )
+        expect(result3).toBe(false)
     })
 })
 
 describe('filterFn', () => {
     const MOCK_ARRAY = ["a", 2, "b", 3]
 
+
     it("should return an array with elements that meet the condition", () => {
+        const EXPECTED_OUTPUT_ONE = [2,3]
+        const EXPECTED_OUTPUT_TWO = ["a", "b"]
+        const EXPECTED_OUTPUT_THREE = [3]
+
         const result = filterFn(MOCK_ARRAY, (elem) => typeof elem === "number")
-        expect(result).toEqual([2,3])
+        expect(result).toEqual(EXPECTED_OUTPUT_ONE)
 
         const result2 = filterFn(MOCK_ARRAY, (elem) => typeof elem === "string")
-        expect(result2).toEqual(["a", "b"])
+        expect(result2).toEqual(EXPECTED_OUTPUT_TWO)
+
+        const result3 = filterFn(MOCK_ARRAY, (elem) => typeof elem === "number" && elem > 2)
+        expect(result3).toStrictEqual(EXPECTED_OUTPUT_THREE)
     })
 
     it("when no elements meet condition empty array should be returned", () => {
         const result = filterFn(MOCK_ARRAY, (elem) => typeof elem === "number" && elem > 5 )
         expect(result).toEqual([])
+
+        const result2 = filterFn(MOCK_ARRAY, (elem) => typeof elem == "string" && elem === "c")
+        expect(result2).toEqual([])
+
+        const result3 = filterFn(MOCK_ARRAY, (elem) => typeof elem === "number" && elem === 19)
+        expect(result3).toEqual([])
     })
 });
 
